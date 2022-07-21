@@ -1,0 +1,245 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PaymentEmailConverter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.romansj.backend_hwk.notifications.email</a>
+</div>
+
+<h1>Coverage Summary for Class: PaymentEmailConverter (com.romansj.backend_hwk.notifications.email)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PaymentEmailConverter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (35/35)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PaymentEmailConverter$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (36/36)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.romansj.backend_hwk.notifications.email;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.romansj.backend_hwk.notifications.email.templating.SubjectAndTemplate;
+<i class="no-highlight">4</i>&nbsp;import com.romansj.backend_hwk.payments.authorization.AuthorizationProvider;
+<i class="no-highlight">5</i>&nbsp;import com.romansj.backend_hwk.payments.authorization.AuthorizationRequest;
+<i class="no-highlight">6</i>&nbsp;import com.romansj.backend_hwk.payments.authorization.AuthorizationType;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;import java.time.format.DateTimeFormatter;
+<i class="no-highlight">9</i>&nbsp;import java.time.format.FormatStyle;
+<i class="no-highlight">10</i>&nbsp;import java.util.HashMap;
+<i class="no-highlight">11</i>&nbsp;import java.util.Map;
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;import static com.romansj.backend_hwk.notifications.email.templating.EmailProperty.*;
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;public class PaymentEmailConverter {
+<b class="fc"><i class="no-highlight">16</i>&nbsp;    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);</b>
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;
+<i class="no-highlight">19</i>&nbsp;    private PaymentEmailConverter() {
+<i class="no-highlight">20</i>&nbsp;    }
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;    /**
+<i class="no-highlight">23</i>&nbsp;     * Fills Email instance with parameter data from Payment data
+<i class="no-highlight">24</i>&nbsp;     *
+<i class="no-highlight">25</i>&nbsp;     * @param paymentData Holds relevant payment data, the payment itself, authorization request (if any), and user data
+<i class="no-highlight">26</i>&nbsp;     * @return Email instance with relevant data extracted from Payment data
+<i class="no-highlight">27</i>&nbsp;     */
+<i class="no-highlight">28</i>&nbsp;    public static Email getEmailFromPaymentData(String sender, PaymentData paymentData) {
+<b class="fc"><i class="no-highlight">29</i>&nbsp;        var properties = getProperties(paymentData, sender);</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;        return getEmail(paymentData, properties);</b>
+<i class="no-highlight">31</i>&nbsp;    }
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;
+<i class="no-highlight">34</i>&nbsp;    private static Map&lt;String, Object&gt; getProperties(PaymentData paymentData, String sender) {
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        var type = getType(paymentData);</b>
+<i class="no-highlight">36</i>&nbsp;
+<i class="no-highlight">37</i>&nbsp;
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        var properties = getCommonProperties(paymentData, sender);</b>
+<b class="fc"><i class="no-highlight">39</i>&nbsp;        setAdditionalProperties(paymentData, type, properties);</b>
+<i class="no-highlight">40</i>&nbsp;
+<b class="fc"><i class="no-highlight">41</i>&nbsp;        return properties;</b>
+<i class="no-highlight">42</i>&nbsp;    }
+<i class="no-highlight">43</i>&nbsp;
+<i class="no-highlight">44</i>&nbsp;    private static AuthorizationType getType(PaymentData paymentData) {
+<b class="fc"><i class="no-highlight">45</i>&nbsp;        return AuthorizationProvider.getType(paymentData.authorizationRequest());</b>
+<i class="no-highlight">46</i>&nbsp;    }
+<i class="no-highlight">47</i>&nbsp;
+<i class="no-highlight">48</i>&nbsp;
+<i class="no-highlight">49</i>&nbsp;    /**
+<i class="no-highlight">50</i>&nbsp;     * Sets all {@link AuthorizationType shared properties}. Type-specific properties ar set in {@link PaymentEmailConverter#setAdditionalProperties(PaymentData, AuthorizationType, Map)}
+<i class="no-highlight">51</i>&nbsp;     *
+<i class="no-highlight">52</i>&nbsp;     * @return Returns Properties map with all common properties
+<i class="no-highlight">53</i>&nbsp;     */
+<i class="no-highlight">54</i>&nbsp;    private static Map&lt;String, Object&gt; getCommonProperties(PaymentData paymentData, String sender) {
+<b class="fc"><i class="no-highlight">55</i>&nbsp;        Map&lt;String, Object&gt; properties = new HashMap&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">56</i>&nbsp;        properties.put(SENDER.name(), sender);</b>
+<b class="fc"><i class="no-highlight">57</i>&nbsp;        properties.put(NAME.name(), paymentData.user().getName());</b>
+<b class="fc"><i class="no-highlight">58</i>&nbsp;        properties.put(PAYMENT_DATE.name(), dateTimeFormatter.format(paymentData.payment().getPaymentDate()));</b>
+<b class="fc"><i class="no-highlight">59</i>&nbsp;        properties.put(ACCOUNT_DESTINATION.name(), paymentData.payment().getAccountDestination());</b>
+<b class="fc"><i class="no-highlight">60</i>&nbsp;        properties.put(NAME_DESTINATION.name(), paymentData.payment().getNameDestination());</b>
+<b class="fc"><i class="no-highlight">61</i>&nbsp;        properties.put(AMOUNT.name(), paymentData.payment().getAmount());</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;        properties.put(CURRENCY.name(), paymentData.payment().getCurrency().getDisplayName());</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;        return properties;</b>
+<i class="no-highlight">64</i>&nbsp;
+<i class="no-highlight">65</i>&nbsp;    }
+<i class="no-highlight">66</i>&nbsp;
+<i class="no-highlight">67</i>&nbsp;
+<i class="no-highlight">68</i>&nbsp;    /**
+<i class="no-highlight">69</i>&nbsp;     * Additional properties are added as needed, per {@link AuthorizationType}
+<i class="no-highlight">70</i>&nbsp;     */
+<i class="no-highlight">71</i>&nbsp;    private static void setAdditionalProperties(PaymentData paymentData, AuthorizationType type, Map&lt;String, Object&gt; properties) {
+<b class="fc"><i class="no-highlight">72</i>&nbsp;        switch (type) {</b>
+<b class="fc"><i class="no-highlight">73</i>&nbsp;            case AUTHORIZATION -&gt; properties.put(LINK_CONFIRM.name(), getAuthorizationLink(paymentData.authorizationRequest()));</b>
+<i class="no-highlight">74</i>&nbsp;            case CONFIRMATION -&gt; {
+<i class="no-highlight">75</i>&nbsp;            }
+<i class="no-highlight">76</i>&nbsp;        }
+<i class="no-highlight">77</i>&nbsp;    }
+<i class="no-highlight">78</i>&nbsp;
+<i class="no-highlight">79</i>&nbsp;
+<i class="no-highlight">80</i>&nbsp;    private static SubjectAndTemplate getSubjectAndTemplate(AuthorizationType type) {
+<b class="fc"><i class="no-highlight">81</i>&nbsp;        return switch (type) {</b>
+<b class="fc"><i class="no-highlight">82</i>&nbsp;            case AUTHORIZATION -&gt; new SubjectAndTemplate(&quot;Payment authorization&quot;, &quot;payment-authorization-email_2.html&quot;);</b>
+<b class="fc"><i class="no-highlight">83</i>&nbsp;            case CONFIRMATION -&gt; new SubjectAndTemplate(&quot;Payment confirmation&quot;, &quot;payment-confirmation-email_2.html&quot;);</b>
+<i class="no-highlight">84</i>&nbsp;        };
+<i class="no-highlight">85</i>&nbsp;    }
+<i class="no-highlight">86</i>&nbsp;
+<i class="no-highlight">87</i>&nbsp;
+<i class="no-highlight">88</i>&nbsp;    private static Email getEmail(PaymentData paymentData, Map&lt;String, Object&gt; properties) {
+<b class="fc"><i class="no-highlight">89</i>&nbsp;        var type = getType(paymentData);</b>
+<i class="no-highlight">90</i>&nbsp;
+<b class="fc"><i class="no-highlight">91</i>&nbsp;        var emailAddress = paymentData.user().getEmail();</b>
+<b class="fc"><i class="no-highlight">92</i>&nbsp;        var subject = getSubjectAndTemplate(type).subject();</b>
+<b class="fc"><i class="no-highlight">93</i>&nbsp;        var template = getSubjectAndTemplate(type).template();</b>
+<i class="no-highlight">94</i>&nbsp;
+<b class="fc"><i class="no-highlight">95</i>&nbsp;        return getEmail(properties.get(SENDER.name()).toString(), emailAddress, subject, template, properties);</b>
+<i class="no-highlight">96</i>&nbsp;    }
+<i class="no-highlight">97</i>&nbsp;
+<i class="no-highlight">98</i>&nbsp;    private static Email getEmail(String sender, String recipient, String subject, String template, Map&lt;String, Object&gt; properties) {
+<b class="fc"><i class="no-highlight">99</i>&nbsp;        return Email.builder()</b>
+<b class="fc"><i class="no-highlight">100</i>&nbsp;                .from(sender)</b>
+<b class="fc"><i class="no-highlight">101</i>&nbsp;                .to(recipient)</b>
+<b class="fc"><i class="no-highlight">102</i>&nbsp;                .subject(subject)</b>
+<b class="fc"><i class="no-highlight">103</i>&nbsp;                .template(template)</b>
+<b class="fc"><i class="no-highlight">104</i>&nbsp;                .properties(properties)</b>
+<b class="fc"><i class="no-highlight">105</i>&nbsp;                .build();</b>
+<i class="no-highlight">106</i>&nbsp;    }
+<i class="no-highlight">107</i>&nbsp;
+<i class="no-highlight">108</i>&nbsp;
+<i class="no-highlight">109</i>&nbsp;    // todo should this class know about the link?
+<i class="no-highlight">110</i>&nbsp;    private static String getAuthorizationLink(AuthorizationRequest authorizationRequest) {
+<b class="fc"><i class="no-highlight">111</i>&nbsp;        return &quot;http://localhost:8081/payment-approve&quot; + &quot;?token=&quot; + authorizationRequest.getToken();</b>
+<i class="no-highlight">112</i>&nbsp;    }
+<i class="no-highlight">113</i>&nbsp;
+<i class="no-highlight">114</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-21 01:44</div>
+</div>
+</body>
+</html>

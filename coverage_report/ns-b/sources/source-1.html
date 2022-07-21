@@ -1,0 +1,180 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PaymentValidator</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.romansj.backend_hwk.payments.validation</a>
+</div>
+
+<h1>Coverage Summary for Class: PaymentValidator (com.romansj.backend_hwk.payments.validation)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PaymentValidator</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.3%
+  </span>
+  <span class="absValue">
+    (33/35)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.romansj.backend_hwk.payments.validation;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.romansj.backend_hwk.accounts.IAccount;
+<i class="no-highlight">4</i>&nbsp;import com.romansj.backend_hwk.configuration.exceptions.MyConstraintException;
+<i class="no-highlight">5</i>&nbsp;import com.romansj.backend_hwk.configuration.exceptions.MyViolation;
+<i class="no-highlight">6</i>&nbsp;import com.romansj.backend_hwk.payments.entity.Payment;
+<i class="no-highlight">7</i>&nbsp;import org.hibernate.validator.HibernateValidator;
+<i class="no-highlight">8</i>&nbsp;import org.hibernate.validator.cfg.defs.*;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;import javax.validation.ConstraintViolation;
+<i class="no-highlight">11</i>&nbsp;import javax.validation.Validation;
+<i class="no-highlight">12</i>&nbsp;import javax.validation.Validator;
+<i class="no-highlight">13</i>&nbsp;import java.util.ArrayList;
+<i class="no-highlight">14</i>&nbsp;import java.util.List;
+<i class="no-highlight">15</i>&nbsp;import java.util.Set;
+<i class="no-highlight">16</i>&nbsp;
+<b class="nc"><i class="no-highlight">17</i>&nbsp;public class PaymentValidator { // implements IPaymentValidator</b>
+<i class="no-highlight">18</i>&nbsp;    private static Validator getValidator() {
+<b class="fc"><i class="no-highlight">19</i>&nbsp;        var configuration = Validation</b>
+<b class="fc"><i class="no-highlight">20</i>&nbsp;                .byProvider(HibernateValidator.class)</b>
+<b class="fc"><i class="no-highlight">21</i>&nbsp;                .configure();</b>
+<i class="no-highlight">22</i>&nbsp;
+<b class="fc"><i class="no-highlight">23</i>&nbsp;        var constraintMapping = configuration.createConstraintMapping();</b>
+<i class="no-highlight">24</i>&nbsp;
+<b class="fc"><i class="no-highlight">25</i>&nbsp;        constraintMapping</b>
+<b class="fc"><i class="no-highlight">26</i>&nbsp;                .type(Payment.class)</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;                .field(&quot;accountDestination&quot;)</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;                .constraint(new NotNullDef())</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;                .constraint(new SizeDef().min(21).max(34))</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;                .field(&quot;nameDestination&quot;)</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;                .constraint(new NotNullDef())</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;                .constraint(new NotBlankDef())</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;                .field(&quot;reason&quot;)</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;                .constraint(new NotNullDef())</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;                .constraint(new NotBlankDef())</b>
+<b class="fc"><i class="no-highlight">36</i>&nbsp;                .field(&quot;amount&quot;)</b>
+<b class="fc"><i class="no-highlight">37</i>&nbsp;                .ignoreAnnotations(true)</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;                .constraint(new NotNullDef())</b>
+<b class="fc"><i class="no-highlight">39</i>&nbsp;                .constraint(new DecimalMinDef().value(&quot;0.01&quot;).inclusive(true))</b>
+<b class="fc"><i class="no-highlight">40</i>&nbsp;                .constraint(new DecimalMaxDef().value(&quot;1000000&quot;).inclusive(true));</b>
+<i class="no-highlight">41</i>&nbsp;
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        var validator = configuration.addMapping(constraintMapping)</b>
+<b class="fc"><i class="no-highlight">43</i>&nbsp;                .buildValidatorFactory()</b>
+<b class="fc"><i class="no-highlight">44</i>&nbsp;                .getValidator();</b>
+<i class="no-highlight">45</i>&nbsp;
+<b class="fc"><i class="no-highlight">46</i>&nbsp;        return validator;</b>
+<i class="no-highlight">47</i>&nbsp;    }
+<i class="no-highlight">48</i>&nbsp;
+<i class="no-highlight">49</i>&nbsp;    public static void validate(IAccount account, Payment providedPayment) {
+<b class="fc"><i class="no-highlight">50</i>&nbsp;        var violations = getValidator().validate(providedPayment);</b>
+<b class="fc"><i class="no-highlight">51</i>&nbsp;        var myViolations = getViolations(violations);</b>
+<i class="no-highlight">52</i>&nbsp;
+<i class="no-highlight">53</i>&nbsp;
+<b class="fc"><i class="no-highlight">54</i>&nbsp;        if (providedPayment.getAccountDestination().equals(providedPayment.getAccountOrigin())) {</b>
+<i class="no-highlight">55</i>&nbsp;            // easier to implement than own Hibernate constraint, but means hardcoded path
+<b class="nc"><i class="no-highlight">56</i>&nbsp;            myViolations.add(new MyViolation(&quot;accountDestination&quot;, &quot;Destination and origin accounts cannot be the same&quot;));</b>
+<i class="no-highlight">57</i>&nbsp;        }
+<i class="no-highlight">58</i>&nbsp;
+<b class="fc"><i class="no-highlight">59</i>&nbsp;        if (!violations.isEmpty()) throw new MyConstraintException(myViolations);</b>
+<i class="no-highlight">60</i>&nbsp;    }
+<i class="no-highlight">61</i>&nbsp;
+<i class="no-highlight">62</i>&nbsp;
+<i class="no-highlight">63</i>&nbsp;    private static List&lt;MyViolation&gt; getViolations(Set&lt;ConstraintViolation&lt;Payment&gt;&gt; constraintViolations) {
+<b class="fc"><i class="no-highlight">64</i>&nbsp;        var myViolationList = new ArrayList&lt;MyViolation&gt;();</b>
+<b class="fc"><i class="no-highlight">65</i>&nbsp;        constraintViolations.forEach(paymentConstraintViolation -&gt; myViolationList.add(</b>
+<i class="no-highlight">66</i>&nbsp;                new MyViolation(
+<b class="fc"><i class="no-highlight">67</i>&nbsp;                        paymentConstraintViolation.getPropertyPath().toString(),</b>
+<b class="fc"><i class="no-highlight">68</i>&nbsp;                        paymentConstraintViolation.getMessage()</b>
+<i class="no-highlight">69</i>&nbsp;                )));
+<i class="no-highlight">70</i>&nbsp;
+<b class="fc"><i class="no-highlight">71</i>&nbsp;        return myViolationList;</b>
+<i class="no-highlight">72</i>&nbsp;    }
+<i class="no-highlight">73</i>&nbsp;
+<i class="no-highlight">74</i>&nbsp;
+<i class="no-highlight">75</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-21 01:44</div>
+</div>
+</body>
+</html>

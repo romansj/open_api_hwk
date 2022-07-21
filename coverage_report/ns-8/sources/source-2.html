@@ -1,0 +1,141 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PaymentObservable</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.romansj.backend_hwk.payments</a>
+</div>
+
+<h1>Coverage Summary for Class: PaymentObservable (com.romansj.backend_hwk.payments)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PaymentObservable</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.romansj.backend_hwk.payments;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.romansj.backend_hwk.notifications.email.PaymentData;
+<i class="no-highlight">4</i>&nbsp;import com.romansj.backend_hwk.utils.models.ObservableSubject;
+<i class="no-highlight">5</i>&nbsp;import io.reactivex.rxjava3.core.Observable;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;// todo is this name relevant? it&#39;s not an observable.
+<i class="no-highlight">9</i>&nbsp;// it is a singleton which holds an observable, which can be subscribed to and notified of new values
+<i class="no-highlight">10</i>&nbsp;public class PaymentObservable {
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;    // Wanted to use annotation @Component, which would create singleton, but it could only be autowired in first caller class.
+<i class="no-highlight">13</i>&nbsp;    // However, manual singleton getInstance call works in first class and returns the instance in second caller class
+<b class="fc"><i class="no-highlight">14</i>&nbsp;    private ObservableSubject&lt;PaymentData&gt; observable = new ObservableSubject&lt;&gt;();</b>
+<i class="no-highlight">15</i>&nbsp;    private static PaymentObservable INSTANCE;
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;    public static PaymentObservable getInstance() {
+<b class="fc"><i class="no-highlight">18</i>&nbsp;        if (INSTANCE == null) INSTANCE = new PaymentObservable();</b>
+<b class="fc"><i class="no-highlight">19</i>&nbsp;        return INSTANCE;</b>
+<i class="no-highlight">20</i>&nbsp;    }
+<i class="no-highlight">21</i>&nbsp;
+<b class="fc"><i class="no-highlight">22</i>&nbsp;    private PaymentObservable() {</b>
+<i class="no-highlight">23</i>&nbsp;    }
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;    public Observable&lt;PaymentData&gt; getObservable() {
+<b class="fc"><i class="no-highlight">27</i>&nbsp;        return observable.getObservable();</b>
+<i class="no-highlight">28</i>&nbsp;    }
+<i class="no-highlight">29</i>&nbsp;
+<i class="no-highlight">30</i>&nbsp;
+<i class="no-highlight">31</i>&nbsp;    public void notify(PaymentData paymentData) {
+<b class="fc"><i class="no-highlight">32</i>&nbsp;        observable.setValue(paymentData);</b>
+<i class="no-highlight">33</i>&nbsp;    }
+<i class="no-highlight">34</i>&nbsp;
+<i class="no-highlight">35</i>&nbsp;
+<i class="no-highlight">36</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-21 01:44</div>
+</div>
+</body>
+</html>
