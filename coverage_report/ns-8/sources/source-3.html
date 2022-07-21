@@ -50,18 +50,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    42.9%
+    50%
   </span>
   <span class="absValue">
-    (3/7)
+    (4/8)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    29%
+    31.2%
   </span>
   <span class="absValue">
-    (9/31)
+    (10/32)
   </span>
 </td>
 </tr>
@@ -86,109 +86,109 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">11</i>&nbsp;import com.romansj.backend_hwk.payments.entity.Status;
 <i class="no-highlight">12</i>&nbsp;import com.romansj.backend_hwk.payments.validation.PaymentValidator;
 <i class="no-highlight">13</i>&nbsp;import com.romansj.backend_hwk.users.User;
-<i class="no-highlight">14</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
-<i class="no-highlight">15</i>&nbsp;import org.springframework.stereotype.Service;
-<i class="no-highlight">16</i>&nbsp;
-<i class="no-highlight">17</i>&nbsp;import java.time.LocalDateTime;
-<i class="no-highlight">18</i>&nbsp;import java.util.List;
-<i class="no-highlight">19</i>&nbsp;import java.util.Optional;
-<i class="no-highlight">20</i>&nbsp;
-<i class="no-highlight">21</i>&nbsp;@Service
-<b class="fc"><i class="no-highlight">22</i>&nbsp;public class PaymentService {</b>
-<i class="no-highlight">23</i>&nbsp;    @Autowired
-<i class="no-highlight">24</i>&nbsp;    private PaymentRepository paymentRepository;
-<i class="no-highlight">25</i>&nbsp;    @Autowired
-<i class="no-highlight">26</i>&nbsp;    private AuthorizationRepository authorizationRepository;
-<i class="no-highlight">27</i>&nbsp;
-<i class="no-highlight">28</i>&nbsp;    @Autowired
-<i class="no-highlight">29</i>&nbsp;    private AuthorizationProvider authorizationProvider;
-<i class="no-highlight">30</i>&nbsp;
-<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;import lombok.extern.slf4j.Slf4j;
+<i class="no-highlight">15</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i class="no-highlight">16</i>&nbsp;import org.springframework.stereotype.Service;
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;import java.time.LocalDateTime;
+<i class="no-highlight">19</i>&nbsp;import java.util.List;
+<i class="no-highlight">20</i>&nbsp;import java.util.Optional;
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;import static com.sun.activation.registries.LogSupport.log;
+<i class="no-highlight">23</i>&nbsp;
+<i class="no-highlight">24</i>&nbsp;// Did not create delete mapping for payments to keep a history of all of them
+<i class="no-highlight">25</i>&nbsp;// If the payment is not accurate, it is not approved by user and stays in database as &quot;PENDING&quot;
+<i class="no-highlight">26</i>&nbsp;// Would probably schedule some job to update the auth requests which weren&#39;t authorised and set payments to &quot;REJECTED&quot;
+<b class="fc"><i class="no-highlight">27</i>&nbsp;@Slf4j</b>
+<i class="no-highlight">28</i>&nbsp;@Service
+<b class="fc"><i class="no-highlight">29</i>&nbsp;public class PaymentService {</b>
+<i class="no-highlight">30</i>&nbsp;    @Autowired
+<i class="no-highlight">31</i>&nbsp;    private PaymentRepository paymentRepository;
 <i class="no-highlight">32</i>&nbsp;    @Autowired
-<i class="no-highlight">33</i>&nbsp;    private User user;
-<b class="fc"><i class="no-highlight">34</i>&nbsp;    private IAccount account = new Account(100, &quot;LV10PARX0012345678911&quot;);</b>
-<i class="no-highlight">35</i>&nbsp;
-<i class="no-highlight">36</i>&nbsp;    /**
-<i class="no-highlight">37</i>&nbsp;     * Validates given payment and stores it in database
-<i class="no-highlight">38</i>&nbsp;     *
-<i class="no-highlight">39</i>&nbsp;     * @param providedPayment Payment data
-<i class="no-highlight">40</i>&nbsp;     * @return Returns created Payment with any modifications, e.g., filled Id field
-<i class="no-highlight">41</i>&nbsp;     */
-<i class="no-highlight">42</i>&nbsp;    public Payment addPayment(Payment providedPayment) {
-<b class="fc"><i class="no-highlight">43</i>&nbsp;        PaymentValidator.validate(account, providedPayment);</b>
-<i class="no-highlight">44</i>&nbsp;
-<i class="no-highlight">45</i>&nbsp;
-<b class="fc"><i class="no-highlight">46</i>&nbsp;        var savedPayment = paymentRepository.save(providedPayment);</b>
-<i class="no-highlight">47</i>&nbsp;
-<i class="no-highlight">48</i>&nbsp;
-<b class="fc"><i class="no-highlight">49</i>&nbsp;        var authorizationRequest = authorizationProvider.getAuthorizationRequest(providedPayment);</b>
-<b class="fc"><i class="no-highlight">50</i>&nbsp;        authorizationRepository.save(authorizationRequest);</b>
+<i class="no-highlight">33</i>&nbsp;    private AuthorizationRepository authorizationRepository;
+<i class="no-highlight">34</i>&nbsp;
+<i class="no-highlight">35</i>&nbsp;    @Autowired
+<i class="no-highlight">36</i>&nbsp;    private AuthorizationProvider authorizationProvider;
+<i class="no-highlight">37</i>&nbsp;
+<i class="no-highlight">38</i>&nbsp;
+<i class="no-highlight">39</i>&nbsp;    @Autowired
+<i class="no-highlight">40</i>&nbsp;    private User user;
+<b class="fc"><i class="no-highlight">41</i>&nbsp;    private IAccount account = new Account(100, &quot;LV10PARX0012345678911&quot;);</b>
+<i class="no-highlight">42</i>&nbsp;
+<i class="no-highlight">43</i>&nbsp;    /**
+<i class="no-highlight">44</i>&nbsp;     * Validates given payment and stores it in database
+<i class="no-highlight">45</i>&nbsp;     *
+<i class="no-highlight">46</i>&nbsp;     * @param providedPayment Payment data
+<i class="no-highlight">47</i>&nbsp;     * @return Returns created Payment with any modifications, e.g., filled Id field
+<i class="no-highlight">48</i>&nbsp;     */
+<i class="no-highlight">49</i>&nbsp;    public Payment addPayment(Payment providedPayment) {
+<b class="fc"><i class="no-highlight">50</i>&nbsp;        PaymentValidator.validate(account, providedPayment);</b>
 <i class="no-highlight">51</i>&nbsp;
 <i class="no-highlight">52</i>&nbsp;
-<i class="no-highlight">53</i>&nbsp;        // todo !!! how do i know when to pass null or not
-<b class="fc"><i class="no-highlight">54</i>&nbsp;        PaymentObservable.getInstance().notify(new PaymentData(providedPayment, authorizationRequest, user));</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;        var savedPayment = paymentRepository.save(providedPayment);</b>
+<i class="no-highlight">54</i>&nbsp;
 <i class="no-highlight">55</i>&nbsp;
-<i class="no-highlight">56</i>&nbsp;
-<b class="fc"><i class="no-highlight">57</i>&nbsp;        return savedPayment;</b>
-<i class="no-highlight">58</i>&nbsp;    }
+<b class="fc"><i class="no-highlight">56</i>&nbsp;        var authorizationRequest = authorizationProvider.getAuthorizationRequest(providedPayment);</b>
+<b class="fc"><i class="no-highlight">57</i>&nbsp;        authorizationRepository.save(authorizationRequest);</b>
+<i class="no-highlight">58</i>&nbsp;
 <i class="no-highlight">59</i>&nbsp;
-<i class="no-highlight">60</i>&nbsp;
-<i class="no-highlight">61</i>&nbsp;    public Optional&lt;Payment&gt; findPaymentById(long id) {
-<b class="nc"><i class="no-highlight">62</i>&nbsp;        return paymentRepository.findById(id);</b>
-<i class="no-highlight">63</i>&nbsp;    }
-<i class="no-highlight">64</i>&nbsp;
+<b class="fc"><i class="no-highlight">60</i>&nbsp;        PaymentObservable.getInstance().notify(new PaymentData(providedPayment, authorizationRequest, user));</b>
+<i class="no-highlight">61</i>&nbsp;
+<i class="no-highlight">62</i>&nbsp;
+<b class="fc"><i class="no-highlight">63</i>&nbsp;        return savedPayment;</b>
+<i class="no-highlight">64</i>&nbsp;    }
 <i class="no-highlight">65</i>&nbsp;
-<i class="no-highlight">66</i>&nbsp;    // todo doing many things
-<i class="no-highlight">67</i>&nbsp;    // todo could probably schedule some job to update the auth requests which weren&#39;t authorised
-<i class="no-highlight">68</i>&nbsp;    // but they cannot be used after expiration, so they can stay pending and still fulfill 2 minute timeout function
-<i class="no-highlight">69</i>&nbsp;
-<i class="no-highlight">70</i>&nbsp;    /**
-<i class="no-highlight">71</i>&nbsp;     * Allows
-<i class="no-highlight">72</i>&nbsp;     *
-<i class="no-highlight">73</i>&nbsp;     * @param token Token which is generated when creating a payment (see {@link PaymentService#addPayment(Payment)}) that is used for finding the associated payment
-<i class="no-highlight">74</i>&nbsp;     * @return Returns updated payment if all checks were successful. If not, the returned Optional is empty
-<i class="no-highlight">75</i>&nbsp;     */
-<i class="no-highlight">76</i>&nbsp;    public Optional&lt;Payment&gt; updatePaymentByToken(String token) {
-<b class="nc"><i class="no-highlight">77</i>&nbsp;        System.out.println(&quot;token &quot; + token);</b>
-<i class="no-highlight">78</i>&nbsp;
-<i class="no-highlight">79</i>&nbsp;
+<i class="no-highlight">66</i>&nbsp;
+<i class="no-highlight">67</i>&nbsp;    public Optional&lt;Payment&gt; findPaymentById(long id) {
+<b class="nc"><i class="no-highlight">68</i>&nbsp;        return paymentRepository.findById(id);</b>
+<i class="no-highlight">69</i>&nbsp;    }
+<i class="no-highlight">70</i>&nbsp;
+<i class="no-highlight">71</i>&nbsp;
+<i class="no-highlight">72</i>&nbsp;
+<i class="no-highlight">73</i>&nbsp;    /**
+<i class="no-highlight">74</i>&nbsp;     * Allows
+<i class="no-highlight">75</i>&nbsp;     *
+<i class="no-highlight">76</i>&nbsp;     * @param token Token which is generated when creating a payment (see {@link PaymentService#addPayment(Payment)}) that is used for finding the associated payment
+<i class="no-highlight">77</i>&nbsp;     * @return Returns updated payment if all checks were successful. If not, the returned Optional is empty
+<i class="no-highlight">78</i>&nbsp;     */
+<i class="no-highlight">79</i>&nbsp;    public Optional&lt;Payment&gt; updatePaymentByToken(String token) {
 <i class="no-highlight">80</i>&nbsp;        // find the auth request
 <b class="nc"><i class="no-highlight">81</i>&nbsp;        var authorizationRequest = getAuthorizationRequest(token);</b>
 <b class="nc"><i class="no-highlight">82</i>&nbsp;        if (authorizationRequest == null) {</b>
-<b class="nc"><i class="no-highlight">83</i>&nbsp;            System.out.println(&quot;authorizationRequest == null&quot;);</b>
+<b class="nc"><i class="no-highlight">83</i>&nbsp;            log.warn(&quot;authorizationRequest == null&quot;);</b>
 <b class="nc"><i class="no-highlight">84</i>&nbsp;            return Optional.empty();</b>
 <i class="no-highlight">85</i>&nbsp;        }
 <i class="no-highlight">86</i>&nbsp;        // update auth request first. In case we fail to update the payment, we should at least invalidate the request, so it can&#39;t be used again
 <b class="nc"><i class="no-highlight">87</i>&nbsp;        deactivateAuthorizationRequest(authorizationRequest);</b>
 <i class="no-highlight">88</i>&nbsp;
 <i class="no-highlight">89</i>&nbsp;
-<i class="no-highlight">90</i>&nbsp;        // find payment by auth.payment_id
+<i class="no-highlight">90</i>&nbsp;        // find payment by auth.payment_id, approve it
 <b class="nc"><i class="no-highlight">91</i>&nbsp;        var payment = authorizationRequest.getPayment();</b>
 <b class="nc"><i class="no-highlight">92</i>&nbsp;        if (payment == null) {</b>
-<b class="nc"><i class="no-highlight">93</i>&nbsp;            System.out.println(&quot;payment == null&quot;);</b>
+<b class="nc"><i class="no-highlight">93</i>&nbsp;            log.warn(&quot;payment == null&quot;);</b>
 <b class="nc"><i class="no-highlight">94</i>&nbsp;            return Optional.empty();</b>
 <i class="no-highlight">95</i>&nbsp;        }
-<i class="no-highlight">96</i>&nbsp;
-<b class="nc"><i class="no-highlight">97</i>&nbsp;        payment.setStatus(Status.APPROVED);</b>
-<b class="nc"><i class="no-highlight">98</i>&nbsp;        var savedPayment = paymentRepository.save(payment);</b>
+<b class="nc"><i class="no-highlight">96</i>&nbsp;        payment.setStatus(Status.APPROVED);</b>
+<b class="nc"><i class="no-highlight">97</i>&nbsp;        var savedPayment = paymentRepository.save(payment);</b>
+<i class="no-highlight">98</i>&nbsp;
 <i class="no-highlight">99</i>&nbsp;
-<i class="no-highlight">100</i>&nbsp;
-<i class="no-highlight">101</i>&nbsp;        // todo !!! how do i know when to pass null or not
-<b class="nc"><i class="no-highlight">102</i>&nbsp;        PaymentObservable.getInstance().notify(new PaymentData(savedPayment, null, user));</b>
-<i class="no-highlight">103</i>&nbsp;
-<i class="no-highlight">104</i>&nbsp;
-<b class="nc"><i class="no-highlight">105</i>&nbsp;        return Optional.of(savedPayment);</b>
-<i class="no-highlight">106</i>&nbsp;    }
-<i class="no-highlight">107</i>&nbsp;
-<i class="no-highlight">108</i>&nbsp;
-<i class="no-highlight">109</i>&nbsp;    /**
-<i class="no-highlight">110</i>&nbsp;     * Validates {@link AuthorizationRequest} found through parameter
-<i class="no-highlight">111</i>&nbsp;     *
-<i class="no-highlight">112</i>&nbsp;     * @param token Token generated when creating {@link AuthorizationRequest}
-<i class="no-highlight">113</i>&nbsp;     * @return Returns found request if valid. If found, but invalid, returns null
-<i class="no-highlight">114</i>&nbsp;     */
-<i class="no-highlight">115</i>&nbsp;    private AuthorizationRequest getAuthorizationRequest(String token) {
-<b class="nc"><i class="no-highlight">116</i>&nbsp;        var authorizationRequest = authorizationRepository.findAuthorizationRequestByToken(token);</b>
+<b class="nc"><i class="no-highlight">100</i>&nbsp;        PaymentObservable.getInstance().notify(new PaymentData(savedPayment, null, user));</b>
+<i class="no-highlight">101</i>&nbsp;
+<i class="no-highlight">102</i>&nbsp;
+<b class="nc"><i class="no-highlight">103</i>&nbsp;        return Optional.of(savedPayment);</b>
+<i class="no-highlight">104</i>&nbsp;    }
+<i class="no-highlight">105</i>&nbsp;
+<i class="no-highlight">106</i>&nbsp;
+<i class="no-highlight">107</i>&nbsp;    /**
+<i class="no-highlight">108</i>&nbsp;     * Validates {@link AuthorizationRequest} found through parameter
+<i class="no-highlight">109</i>&nbsp;     *
+<i class="no-highlight">110</i>&nbsp;     * @param token Token generated when creating {@link AuthorizationRequest}
+<i class="no-highlight">111</i>&nbsp;     * @return Returns found request if valid. If found, but invalid, returns null
+<i class="no-highlight">112</i>&nbsp;     */
+<i class="no-highlight">113</i>&nbsp;    private AuthorizationRequest getAuthorizationRequest(String token) {
+<b class="nc"><i class="no-highlight">114</i>&nbsp;        var authorizationRequest = authorizationRepository.findAuthorizationRequestByToken(token);</b>
+<b class="nc"><i class="no-highlight">115</i>&nbsp;        if (authorizationRequest==null) return null;</b>
+<i class="no-highlight">116</i>&nbsp;
 <b class="nc"><i class="no-highlight">117</i>&nbsp;        var requestExpired = new AuthorizationValidator().isExpired(authorizationRequest);</b>
 <b class="nc"><i class="no-highlight">118</i>&nbsp;        if (!requestExpired) return authorizationRequest;</b>
 <i class="no-highlight">119</i>&nbsp;
@@ -238,7 +238,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-21 01:44</div>
+    <div style="float:right;">generated on 2022-07-21 09:57</div>
 </div>
 </body>
 </html>

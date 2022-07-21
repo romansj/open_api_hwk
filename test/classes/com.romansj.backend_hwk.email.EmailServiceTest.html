@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - EmailServiceTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>EmailServiceTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.romansj.backend_hwk.email.html">com.romansj.backend_hwk.email</a> &gt; EmailServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">11</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">1.876s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">[1] amount=1, expectedFormattedAmount=1.00</td>
+<td class="success">decimalFormatIsCorrect(double, String)[1]</td>
+<td class="success">0.282s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">[2] amount=10, expectedFormattedAmount=10.00</td>
+<td class="success">decimalFormatIsCorrect(double, String)[2]</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">[3] amount=10000, expectedFormattedAmount=10,000.00</td>
+<td class="success">decimalFormatIsCorrect(double, String)[3]</td>
+<td class="success">0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">[4] amount=1000000, expectedFormattedAmount=1,000,000.00</td>
+<td class="success">decimalFormatIsCorrect(double, String)[4]</td>
+<td class="success">0.008s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">[5] amount=23.59, expectedFormattedAmount=23.59</td>
+<td class="success">decimalFormatIsCorrect(double, String)[5]</td>
+<td class="success">0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">[6] amount=0.01, expectedFormattedAmount=0.01</td>
+<td class="success">decimalFormatIsCorrect(double, String)[6]</td>
+<td class="success">0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">[7] amount=0.0, expectedFormattedAmount=0.00</td>
+<td class="success">decimalFormatIsCorrect(double, String)[7]</td>
+<td class="success">0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">emailHasNeededContent()</td>
+<td class="success">emailHasNeededContent()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">emailIsNotEmpty()</td>
+<td class="success">emailIsNotEmpty()</td>
+<td class="success">0.008s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">linkIsClickable()</td>
+<td class="success">linkIsClickable()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">sendHtmlMessage()</td>
+<td class="success">sendHtmlMessage()</td>
+<td class="success">1.529s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>?[30m2022-07-21 09:56:11,446?[0;39m ?[34mINFO ?[0;39m [?[34mTest worker?[0;39m] ?[33morg.springframework.test.context.support.AbstractTestContextBootstrapper?[0;39m: Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.romansj.backend_hwk.email.EmailServiceTest], using SpringBootContextLoader
+?[30m2022-07-21 09:56:11,447?[0;39m ?[34mINFO ?[0;39m [?[34mTest worker?[0;39m] ?[33morg.springframework.test.context.support.AbstractContextLoader?[0;39m: Could not detect default resource locations for test class [com.romansj.backend_hwk.email.EmailServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+?[30m2022-07-21 09:56:11,448?[0;39m ?[34mINFO ?[0;39m [?[34mTest worker?[0;39m] ?[33morg.springframework.test.context.support.AnnotationConfigContextLoaderUtils?[0;39m: Could not detect default configuration classes for test class [com.romansj.backend_hwk.email.EmailServiceTest]: EmailServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+?[30m2022-07-21 09:56:11,453?[0;39m ?[34mINFO ?[0;39m [?[34mTest worker?[0;39m] ?[33morg.springframework.boot.test.context.SpringBootTestContextBootstrapper?[0;39m: Found @SpringBootConfiguration com.romansj.backend_hwk.BackendHwkApplication for test class com.romansj.backend_hwk.email.EmailServiceTest
+?[30m2022-07-21 09:56:11,456?[0;39m ?[34mINFO ?[0;39m [?[34mTest worker?[0;39m] ?[33morg.springframework.test.context.support.AbstractTestContextBootstrapper?[0;39m: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+?[30m2022-07-21 09:56:11,457?[0;39m ?[34mINFO ?[0;39m [?[34mTest worker?[0;39m] ?[33morg.springframework.test.context.support.AbstractTestContextBootstrapper?[0;39m: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5f5caea5, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@747e0a31, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@60ee1a29, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6142b9dd, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5bd11ad6, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5ffaac1f, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4f55da9b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3bad0efd, org.springframework.test.context.event.EventPublishingTestExecutionListener@68f9a4f4, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@626967a0, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@309e874, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5080c40e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@75fb04ee, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@5c863996, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1000303a]
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;link href=&quot;classpath:static/styles/email.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;p&gt;
+    Hello, &lt;span&gt;J?nis&lt;/span&gt;!
+&lt;/p&gt;
+
+&lt;p&gt;
+    You have made a payment request on &lt;b&gt;&lt;span&gt;2022-07-20 23:59:59&lt;/span&gt;&lt;/b&gt;
+&lt;/p&gt;
+&lt;div class=&quot;payment_details&quot;&gt;
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee account: &lt;/span&gt;&lt;span&gt;account1&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee name: &lt;/span&gt;&lt;span&gt;John Doe&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Amount: &lt;/span&gt;&lt;span&gt;1.00&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;p&gt;If the request is correct, please confirm it within the next 2 minutes by clicking the link below&lt;/p&gt;
+
+    &lt;a target=&quot;_blank&quot;
+       href=&quot;https://www.google.com&quot;&gt;Confirm
+        payment&lt;/a&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;If it is not correct, please ignore this email.&lt;/p&gt;
+&lt;p&gt;If you did not make this request, please contact Customer Service.&lt;/p&gt;
+
+&lt;br&gt;
+&lt;p&gt;
+    Best regards, &lt;br/&gt;
+    &lt;em&gt;The Homework Team&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;link href=&quot;classpath:static/styles/email.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;p&gt;
+    Hello, &lt;span&gt;J?nis&lt;/span&gt;!
+&lt;/p&gt;
+
+&lt;p&gt;
+    You have made a payment request on &lt;b&gt;&lt;span&gt;2022-07-20 23:59:59&lt;/span&gt;&lt;/b&gt;
+&lt;/p&gt;
+&lt;div class=&quot;payment_details&quot;&gt;
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee account: &lt;/span&gt;&lt;span&gt;account1&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee name: &lt;/span&gt;&lt;span&gt;John Doe&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Amount: &lt;/span&gt;&lt;span&gt;10.00&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;p&gt;If the request is correct, please confirm it within the next 2 minutes by clicking the link below&lt;/p&gt;
+
+    &lt;a target=&quot;_blank&quot;
+       href=&quot;https://www.google.com&quot;&gt;Confirm
+        payment&lt;/a&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;If it is not correct, please ignore this email.&lt;/p&gt;
+&lt;p&gt;If you did not make this request, please contact Customer Service.&lt;/p&gt;
+
+&lt;br&gt;
+&lt;p&gt;
+    Best regards, &lt;br/&gt;
+    &lt;em&gt;The Homework Team&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;link href=&quot;classpath:static/styles/email.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;p&gt;
+    Hello, &lt;span&gt;J?nis&lt;/span&gt;!
+&lt;/p&gt;
+
+&lt;p&gt;
+    You have made a payment request on &lt;b&gt;&lt;span&gt;2022-07-20 23:59:59&lt;/span&gt;&lt;/b&gt;
+&lt;/p&gt;
+&lt;div class=&quot;payment_details&quot;&gt;
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee account: &lt;/span&gt;&lt;span&gt;account1&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee name: &lt;/span&gt;&lt;span&gt;John Doe&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Amount: &lt;/span&gt;&lt;span&gt;10,000.00&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;p&gt;If the request is correct, please confirm it within the next 2 minutes by clicking the link below&lt;/p&gt;
+
+    &lt;a target=&quot;_blank&quot;
+       href=&quot;https://www.google.com&quot;&gt;Confirm
+        payment&lt;/a&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;If it is not correct, please ignore this email.&lt;/p&gt;
+&lt;p&gt;If you did not make this request, please contact Customer Service.&lt;/p&gt;
+
+&lt;br&gt;
+&lt;p&gt;
+    Best regards, &lt;br/&gt;
+    &lt;em&gt;The Homework Team&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;link href=&quot;classpath:static/styles/email.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;p&gt;
+    Hello, &lt;span&gt;J?nis&lt;/span&gt;!
+&lt;/p&gt;
+
+&lt;p&gt;
+    You have made a payment request on &lt;b&gt;&lt;span&gt;2022-07-20 23:59:59&lt;/span&gt;&lt;/b&gt;
+&lt;/p&gt;
+&lt;div class=&quot;payment_details&quot;&gt;
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee account: &lt;/span&gt;&lt;span&gt;account1&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee name: &lt;/span&gt;&lt;span&gt;John Doe&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Amount: &lt;/span&gt;&lt;span&gt;1,000,000.00&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;p&gt;If the request is correct, please confirm it within the next 2 minutes by clicking the link below&lt;/p&gt;
+
+    &lt;a target=&quot;_blank&quot;
+       href=&quot;https://www.google.com&quot;&gt;Confirm
+        payment&lt;/a&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;If it is not correct, please ignore this email.&lt;/p&gt;
+&lt;p&gt;If you did not make this request, please contact Customer Service.&lt;/p&gt;
+
+&lt;br&gt;
+&lt;p&gt;
+    Best regards, &lt;br/&gt;
+    &lt;em&gt;The Homework Team&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;link href=&quot;classpath:static/styles/email.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;p&gt;
+    Hello, &lt;span&gt;J?nis&lt;/span&gt;!
+&lt;/p&gt;
+
+&lt;p&gt;
+    You have made a payment request on &lt;b&gt;&lt;span&gt;2022-07-20 23:59:59&lt;/span&gt;&lt;/b&gt;
+&lt;/p&gt;
+&lt;div class=&quot;payment_details&quot;&gt;
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee account: &lt;/span&gt;&lt;span&gt;account1&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee name: &lt;/span&gt;&lt;span&gt;John Doe&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Amount: &lt;/span&gt;&lt;span&gt;23.59&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;p&gt;If the request is correct, please confirm it within the next 2 minutes by clicking the link below&lt;/p&gt;
+
+    &lt;a target=&quot;_blank&quot;
+       href=&quot;https://www.google.com&quot;&gt;Confirm
+        payment&lt;/a&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;If it is not correct, please ignore this email.&lt;/p&gt;
+&lt;p&gt;If you did not make this request, please contact Customer Service.&lt;/p&gt;
+
+&lt;br&gt;
+&lt;p&gt;
+    Best regards, &lt;br/&gt;
+    &lt;em&gt;The Homework Team&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;link href=&quot;classpath:static/styles/email.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;p&gt;
+    Hello, &lt;span&gt;J?nis&lt;/span&gt;!
+&lt;/p&gt;
+
+&lt;p&gt;
+    You have made a payment request on &lt;b&gt;&lt;span&gt;2022-07-20 23:59:59&lt;/span&gt;&lt;/b&gt;
+&lt;/p&gt;
+&lt;div class=&quot;payment_details&quot;&gt;
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee account: &lt;/span&gt;&lt;span&gt;account1&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee name: &lt;/span&gt;&lt;span&gt;John Doe&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Amount: &lt;/span&gt;&lt;span&gt;0.01&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;p&gt;If the request is correct, please confirm it within the next 2 minutes by clicking the link below&lt;/p&gt;
+
+    &lt;a target=&quot;_blank&quot;
+       href=&quot;https://www.google.com&quot;&gt;Confirm
+        payment&lt;/a&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;If it is not correct, please ignore this email.&lt;/p&gt;
+&lt;p&gt;If you did not make this request, please contact Customer Service.&lt;/p&gt;
+
+&lt;br&gt;
+&lt;p&gt;
+    Best regards, &lt;br/&gt;
+    &lt;em&gt;The Homework Team&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;link href=&quot;classpath:static/styles/email.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;p&gt;
+    Hello, &lt;span&gt;J?nis&lt;/span&gt;!
+&lt;/p&gt;
+
+&lt;p&gt;
+    You have made a payment request on &lt;b&gt;&lt;span&gt;2022-07-20 23:59:59&lt;/span&gt;&lt;/b&gt;
+&lt;/p&gt;
+&lt;div class=&quot;payment_details&quot;&gt;
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee account: &lt;/span&gt;&lt;span&gt;account1&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee name: &lt;/span&gt;&lt;span&gt;John Doe&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Amount: &lt;/span&gt;&lt;span&gt;0.00&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;p&gt;If the request is correct, please confirm it within the next 2 minutes by clicking the link below&lt;/p&gt;
+
+    &lt;a target=&quot;_blank&quot;
+       href=&quot;https://www.google.com&quot;&gt;Confirm
+        payment&lt;/a&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;If it is not correct, please ignore this email.&lt;/p&gt;
+&lt;p&gt;If you did not make this request, please contact Customer Service.&lt;/p&gt;
+
+&lt;br&gt;
+&lt;p&gt;
+    Best regards, &lt;br/&gt;
+    &lt;em&gt;The Homework Team&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;link href=&quot;classpath:static/styles/email.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;p&gt;
+    Hello, &lt;span&gt;J?nis&lt;/span&gt;!
+&lt;/p&gt;
+
+&lt;p&gt;
+    You have made a payment request on &lt;b&gt;&lt;span&gt;2022-07-20 23:59:59&lt;/span&gt;&lt;/b&gt;
+&lt;/p&gt;
+&lt;div class=&quot;payment_details&quot;&gt;
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee account: &lt;/span&gt;&lt;span&gt;account1&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Payee name: &lt;/span&gt;&lt;span&gt;John Doe&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail_item&quot;&gt;
+        &lt;span&gt;Amount: &lt;/span&gt;&lt;span&gt;2.00&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;p&gt;If the request is correct, please confirm it within the next 2 minutes by clicking the link below&lt;/p&gt;
+
+    &lt;a target=&quot;_blank&quot;
+       href=&quot;https://www.google.com&quot;&gt;Confirm
+        payment&lt;/a&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;If it is not correct, please ignore this email.&lt;/p&gt;
+&lt;p&gt;If you did not make this request, please contact Customer Service.&lt;/p&gt;
+
+&lt;br&gt;
+&lt;p&gt;
+    Best regards, &lt;br/&gt;
+    &lt;em&gt;The Homework Team&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.5</a> at 21 Jul 2022, 09:56:19</p>
+</div>
+</div>
+</body>
+</html>

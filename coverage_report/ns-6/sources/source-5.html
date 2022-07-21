@@ -180,8 +180,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">79</i>&nbsp;
 <i class="no-highlight">80</i>&nbsp;    private static SubjectAndTemplate getSubjectAndTemplate(AuthorizationType type) {
 <b class="fc"><i class="no-highlight">81</i>&nbsp;        return switch (type) {</b>
-<b class="fc"><i class="no-highlight">82</i>&nbsp;            case AUTHORIZATION -&gt; new SubjectAndTemplate(&quot;Payment authorization&quot;, &quot;payment-authorization-email_2.html&quot;);</b>
-<b class="fc"><i class="no-highlight">83</i>&nbsp;            case CONFIRMATION -&gt; new SubjectAndTemplate(&quot;Payment confirmation&quot;, &quot;payment-confirmation-email_2.html&quot;);</b>
+<b class="fc"><i class="no-highlight">82</i>&nbsp;            case AUTHORIZATION -&gt; new SubjectAndTemplate(&quot;Payment authorization&quot;, &quot;payment-authorization-email.html&quot;);</b>
+<b class="fc"><i class="no-highlight">83</i>&nbsp;            case CONFIRMATION -&gt; new SubjectAndTemplate(&quot;Payment confirmation&quot;, &quot;payment-confirmation-email.html&quot;);</b>
 <i class="no-highlight">84</i>&nbsp;        };
 <i class="no-highlight">85</i>&nbsp;    }
 <i class="no-highlight">86</i>&nbsp;
@@ -208,11 +208,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">107</i>&nbsp;
 <i class="no-highlight">108</i>&nbsp;
 <i class="no-highlight">109</i>&nbsp;    // todo should this class know about the link?
-<i class="no-highlight">110</i>&nbsp;    private static String getAuthorizationLink(AuthorizationRequest authorizationRequest) {
-<b class="fc"><i class="no-highlight">111</i>&nbsp;        return &quot;http://localhost:8081/payment-approve&quot; + &quot;?token=&quot; + authorizationRequest.getToken();</b>
-<i class="no-highlight">112</i>&nbsp;    }
-<i class="no-highlight">113</i>&nbsp;
-<i class="no-highlight">114</i>&nbsp;}
+<i class="no-highlight">110</i>&nbsp;    // not exactly no, nor yes. The link leads to frontend.
+<i class="no-highlight">111</i>&nbsp;    private static String getAuthorizationLink(AuthorizationRequest authorizationRequest) {
+<b class="fc"><i class="no-highlight">112</i>&nbsp;        return &quot;http://localhost:8081/payment-approve&quot; + &quot;?token=&quot; + authorizationRequest.getToken();</b>
+<i class="no-highlight">113</i>&nbsp;    }
+<i class="no-highlight">114</i>&nbsp;
+<i class="no-highlight">115</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -239,7 +240,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-21 01:44</div>
+    <div style="float:right;">generated on 2022-07-21 09:57</div>
 </div>
 </body>
 </html>

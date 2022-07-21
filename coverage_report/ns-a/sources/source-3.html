@@ -55,19 +55,19 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 </tr>
   <tr>
-    <td class="name">Payment$HibernateProxy$KxIkyGeB</td>
+    <td class="name">Payment$HibernateProxy$2EfdiG3l</td>
   </tr>
   <tr>
-    <td class="name">Payment$HibernateProxy$nQUPNzCD</td>
+    <td class="name">Payment$HibernateProxy$9Em3Dsrb</td>
   </tr>
   <tr>
-    <td class="name">Payment$HibernateProxy$NYz5cbWR</td>
+    <td class="name">Payment$HibernateProxy$uN4sz2on</td>
   </tr>
   <tr>
-    <td class="name">Payment$HibernateProxy$r8rYboTh</td>
+    <td class="name">Payment$HibernateProxy$usccL4QM</td>
   </tr>
   <tr>
-    <td class="name">Payment$HibernateProxy$wm6lIlFk</td>
+    <td class="name">Payment$HibernateProxy$xMRYgrPN</td>
   </tr>
   <tr>
     <td class="name">Payment$PaymentBuilder</td>
@@ -121,33 +121,33 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">5</i>&nbsp;
 <i class="no-highlight">6</i>&nbsp;import javax.persistence.*;
 <i class="no-highlight">7</i>&nbsp;import java.time.LocalDateTime;
-<i class="no-highlight">8</i>&nbsp;import java.util.Currency;
-<i class="no-highlight">9</i>&nbsp;
-<i class="no-highlight">10</i>&nbsp;// todo need builders for local and for international transfers
-<i class="no-highlight">11</i>&nbsp;//  local, intl-eu, intl
-<i class="no-highlight">12</i>&nbsp;@Entity
-<i class="no-highlight">13</i>&nbsp;@Table(name = &quot;payment&quot;)
-<i class="no-highlight">14</i>&nbsp;@Getter
-<b class="fc"><i class="no-highlight">15</i>&nbsp;@Setter</b>
-<b class="fc"><i class="no-highlight">16</i>&nbsp;@NoArgsConstructor</b>
-<b class="nc"><i class="no-highlight">17</i>&nbsp;@RequiredArgsConstructor</b>
-<b class="fc"><i class="no-highlight">18</i>&nbsp;@AllArgsConstructor(access = AccessLevel.PRIVATE)</b>
-<b class="fc"><i class="no-highlight">19</i>&nbsp;@Builder(builderMethodName = &quot;aPayment&quot;, toBuilder = true, setterPrefix = &quot;with&quot;)</b>
-<i class="no-highlight">20</i>&nbsp;public class Payment {
-<i class="no-highlight">21</i>&nbsp;    @Id
-<i class="no-highlight">22</i>&nbsp;    @GeneratedValue(strategy = GenerationType.AUTO)
-<b class="fc"><i class="no-highlight">23</i>&nbsp;    private long id;</b>
-<i class="no-highlight">24</i>&nbsp;
-<i class="no-highlight">25</i>&nbsp;    @NonNull
-<b class="fc"><i class="no-highlight">26</i>&nbsp;    private PaymentType paymentType;</b>
-<i class="no-highlight">27</i>&nbsp;
-<i class="no-highlight">28</i>&nbsp;    @NonNull
-<b class="fc"><i class="no-highlight">29</i>&nbsp;    private String accountOrigin;</b>
-<i class="no-highlight">30</i>&nbsp;
-<i class="no-highlight">31</i>&nbsp;    // , pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;
+<i class="no-highlight">8</i>&nbsp;import java.time.ZonedDateTime;
+<i class="no-highlight">9</i>&nbsp;import java.util.Currency;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;// todo need builders for local and for international transfers
+<i class="no-highlight">12</i>&nbsp;//  local, intl-eu, intl
+<i class="no-highlight">13</i>&nbsp;@Entity
+<i class="no-highlight">14</i>&nbsp;@Table(name = &quot;payment&quot;)
+<i class="no-highlight">15</i>&nbsp;@Getter
+<b class="fc"><i class="no-highlight">16</i>&nbsp;@Setter</b>
+<b class="fc"><i class="no-highlight">17</i>&nbsp;@NoArgsConstructor</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;@RequiredArgsConstructor</b>
+<b class="fc"><i class="no-highlight">19</i>&nbsp;@AllArgsConstructor(access = AccessLevel.PRIVATE)</b>
+<b class="fc"><i class="no-highlight">20</i>&nbsp;@Builder(builderMethodName = &quot;aPayment&quot;, toBuilder = true, setterPrefix = &quot;with&quot;)</b>
+<i class="no-highlight">21</i>&nbsp;public class Payment {
+<i class="no-highlight">22</i>&nbsp;    @Id
+<i class="no-highlight">23</i>&nbsp;    @GeneratedValue(strategy = GenerationType.AUTO)
+<b class="fc"><i class="no-highlight">24</i>&nbsp;    private long id;</b>
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;    @NonNull
+<b class="fc"><i class="no-highlight">27</i>&nbsp;    private PaymentType paymentType;</b>
+<i class="no-highlight">28</i>&nbsp;
+<i class="no-highlight">29</i>&nbsp;    @NonNull
+<b class="fc"><i class="no-highlight">30</i>&nbsp;    private String accountOrigin;</b>
+<i class="no-highlight">31</i>&nbsp;
 <i class="no-highlight">32</i>&nbsp;    @JsonFormat(shape = JsonFormat.Shape.STRING)
 <i class="no-highlight">33</i>&nbsp;    @NonNull
-<b class="fc"><i class="no-highlight">34</i>&nbsp;    private LocalDateTime paymentDate;</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;    private ZonedDateTime paymentDate;</b>
 <i class="no-highlight">35</i>&nbsp;
 <i class="no-highlight">36</i>&nbsp;    @Builder.Default
 <b class="fc"><i class="no-highlight">37</i>&nbsp;    private ComissionCoverage comissionCoverage = ComissionCoverage.DIVIDED;</b>
@@ -208,7 +208,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-21 01:44</div>
+    <div style="float:right;">generated on 2022-07-21 09:57</div>
 </div>
 </body>
 </html>

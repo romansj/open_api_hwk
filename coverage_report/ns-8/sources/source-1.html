@@ -76,83 +76,81 @@ Current scope:     <a href="../../index.html">all classes</a>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.romansj.backend_hwk.payments;
 <i class="no-highlight">2</i>&nbsp;
 <i class="no-highlight">3</i>&nbsp;import com.romansj.backend_hwk.payments.entity.Payment;
-<i class="no-highlight">4</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
-<i class="no-highlight">5</i>&nbsp;import org.springframework.http.HttpStatus;
-<i class="no-highlight">6</i>&nbsp;import org.springframework.http.ResponseEntity;
-<i class="no-highlight">7</i>&nbsp;import org.springframework.web.bind.annotation.*;
-<i class="no-highlight">8</i>&nbsp;
-<i class="no-highlight">9</i>&nbsp;import java.util.List;
-<i class="no-highlight">10</i>&nbsp;
-<i class="no-highlight">11</i>&nbsp;/**
-<i class="no-highlight">12</i>&nbsp; * Allows access from port 8081 from frontend
-<i class="no-highlight">13</i>&nbsp; */
-<i class="no-highlight">14</i>&nbsp;@CrossOrigin(origins = &quot;http://localhost:8081&quot;)
-<i class="no-highlight">15</i>&nbsp;@RestController
-<i class="no-highlight">16</i>&nbsp;@RequestMapping(&quot;/api/v1&quot;)
-<b class="fc"><i class="no-highlight">17</i>&nbsp;public class PaymentController {</b>
+<i class="no-highlight">4</i>&nbsp;import lombok.extern.slf4j.Slf4j;
+<i class="no-highlight">5</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i class="no-highlight">6</i>&nbsp;import org.springframework.http.HttpStatus;
+<i class="no-highlight">7</i>&nbsp;import org.springframework.http.ResponseEntity;
+<i class="no-highlight">8</i>&nbsp;import org.springframework.web.bind.annotation.*;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;import java.util.List;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;// Allows access from port 8081 from frontend
+<i class="no-highlight">13</i>&nbsp;@CrossOrigin(origins = &quot;http://localhost:8081&quot;)
+<i class="no-highlight">14</i>&nbsp;@RestController
+<i class="no-highlight">15</i>&nbsp;@RequestMapping(&quot;/api/v1&quot;)
+<b class="fc"><i class="no-highlight">16</i>&nbsp;public class PaymentController {</b>
+<i class="no-highlight">17</i>&nbsp;
 <i class="no-highlight">18</i>&nbsp;
-<i class="no-highlight">19</i>&nbsp;
-<i class="no-highlight">20</i>&nbsp;    @Autowired
-<i class="no-highlight">21</i>&nbsp;    private PaymentService service;
+<i class="no-highlight">19</i>&nbsp;    @Autowired
+<i class="no-highlight">20</i>&nbsp;    private PaymentService service;
+<i class="no-highlight">21</i>&nbsp;
 <i class="no-highlight">22</i>&nbsp;
-<i class="no-highlight">23</i>&nbsp;
-<i class="no-highlight">24</i>&nbsp;    @GetMapping(&quot;/&quot;)
-<i class="no-highlight">25</i>&nbsp;    private ResponseEntity&lt;String&gt; getDefault() {
-<b class="fc"><i class="no-highlight">26</i>&nbsp;        return new ResponseEntity&lt;&gt;(&quot;Hello, World!&quot;, HttpStatus.OK);</b>
-<i class="no-highlight">27</i>&nbsp;    }
+<i class="no-highlight">23</i>&nbsp;    @GetMapping(&quot;/&quot;)
+<i class="no-highlight">24</i>&nbsp;    private ResponseEntity&lt;String&gt; getDefault() {
+<b class="fc"><i class="no-highlight">25</i>&nbsp;        return new ResponseEntity&lt;&gt;(&quot;Hello, World!&quot;, HttpStatus.OK);</b>
+<i class="no-highlight">26</i>&nbsp;    }
+<i class="no-highlight">27</i>&nbsp;
 <i class="no-highlight">28</i>&nbsp;
-<i class="no-highlight">29</i>&nbsp;
-<i class="no-highlight">30</i>&nbsp;    /**
-<i class="no-highlight">31</i>&nbsp;     * @return Returns a list of all payments if data exists, otherwise returns {@link HttpStatus.NO_CONTENT}
-<i class="no-highlight">32</i>&nbsp;     */
-<i class="no-highlight">33</i>&nbsp;    @GetMapping(&quot;/payment&quot;)
-<i class="no-highlight">34</i>&nbsp;    private ResponseEntity&lt;List&lt;Payment&gt;&gt; getAllPayments() {
-<b class="fc"><i class="no-highlight">35</i>&nbsp;        var payments = service.findAll();</b>
-<b class="fc"><i class="no-highlight">36</i>&nbsp;        if (payments.isEmpty()) return new ResponseEntity&lt;&gt;(HttpStatus.NO_CONTENT);</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        return new ResponseEntity&lt;&gt;(payments, HttpStatus.OK);</b>
-<i class="no-highlight">38</i>&nbsp;    }
-<i class="no-highlight">39</i>&nbsp;
-<i class="no-highlight">40</i>&nbsp;    /**
-<i class="no-highlight">41</i>&nbsp;     * @param id Sought-after payment&#39;s Id
-<i class="no-highlight">42</i>&nbsp;     * @return Returns payment data if found, otherwise returns {@link HttpStatus.NOT_FOUND}
-<i class="no-highlight">43</i>&nbsp;     */
-<i class="no-highlight">44</i>&nbsp;    @GetMapping(&quot;/payment/{id}&quot;)
-<i class="no-highlight">45</i>&nbsp;    private ResponseEntity&lt;Payment&gt; getPaymentById(@PathVariable(&quot;id&quot;) long id) {
-<b class="nc"><i class="no-highlight">46</i>&nbsp;        var paymentOptional = service.findPaymentById(id);</b>
-<i class="no-highlight">47</i>&nbsp;
-<b class="nc"><i class="no-highlight">48</i>&nbsp;        if (paymentOptional.isPresent()) return new ResponseEntity&lt;&gt;(paymentOptional.get(), HttpStatus.OK);</b>
-<b class="nc"><i class="no-highlight">49</i>&nbsp;        return new ResponseEntity&lt;&gt;(HttpStatus.NOT_FOUND);</b>
-<i class="no-highlight">50</i>&nbsp;    }
+<i class="no-highlight">29</i>&nbsp;    /**
+<i class="no-highlight">30</i>&nbsp;     * @return Returns a list of all payments if data exists, otherwise returns {@link HttpStatus.NO_CONTENT}
+<i class="no-highlight">31</i>&nbsp;     */
+<i class="no-highlight">32</i>&nbsp;    @GetMapping(&quot;/payment&quot;)
+<i class="no-highlight">33</i>&nbsp;    private ResponseEntity&lt;List&lt;Payment&gt;&gt; getAllPayments() {
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        var payments = service.findAll();</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        if (payments.isEmpty()) return new ResponseEntity&lt;&gt;(HttpStatus.NO_CONTENT);</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;        return new ResponseEntity&lt;&gt;(payments, HttpStatus.OK);</b>
+<i class="no-highlight">37</i>&nbsp;    }
+<i class="no-highlight">38</i>&nbsp;
+<i class="no-highlight">39</i>&nbsp;    /**
+<i class="no-highlight">40</i>&nbsp;     * @param id Sought-after payment&#39;s Id
+<i class="no-highlight">41</i>&nbsp;     * @return Returns payment data if found, otherwise returns {@link HttpStatus.NOT_FOUND}
+<i class="no-highlight">42</i>&nbsp;     */
+<i class="no-highlight">43</i>&nbsp;    @GetMapping(&quot;/payment/{id}&quot;)
+<i class="no-highlight">44</i>&nbsp;    private ResponseEntity&lt;Payment&gt; getPaymentById(@PathVariable(&quot;id&quot;) long id) {
+<b class="nc"><i class="no-highlight">45</i>&nbsp;        var paymentOptional = service.findPaymentById(id);</b>
+<i class="no-highlight">46</i>&nbsp;
+<b class="nc"><i class="no-highlight">47</i>&nbsp;        if (paymentOptional.isPresent()) return new ResponseEntity&lt;&gt;(paymentOptional.get(), HttpStatus.OK);</b>
+<b class="nc"><i class="no-highlight">48</i>&nbsp;        return new ResponseEntity&lt;&gt;(HttpStatus.NOT_FOUND);</b>
+<i class="no-highlight">49</i>&nbsp;    }
+<i class="no-highlight">50</i>&nbsp;
 <i class="no-highlight">51</i>&nbsp;
-<i class="no-highlight">52</i>&nbsp;
-<i class="no-highlight">53</i>&nbsp;    /**
-<i class="no-highlight">54</i>&nbsp;     * @param providedPayment JSON serialized Payment data that needs to be stored on backend
-<i class="no-highlight">55</i>&nbsp;     * @return See {@link PaymentService#addPayment(Payment)}
-<i class="no-highlight">56</i>&nbsp;     * &lt;br&gt;&lt;br&gt;
-<i class="no-highlight">57</i>&nbsp;     * Can throw {@link com.romansj.backend_hwk.configuration.exceptions.MyConstraintException} if incorrect input data is sent, with {@link HttpStatus.BAD_REQUEST}
-<i class="no-highlight">58</i>&nbsp;     */
-<i class="no-highlight">59</i>&nbsp;    @PostMapping(&quot;/payment&quot;)
-<i class="no-highlight">60</i>&nbsp;    private ResponseEntity&lt;Payment&gt; createPayment(@RequestBody Payment providedPayment) {
-<b class="fc"><i class="no-highlight">61</i>&nbsp;        var savedPayment = service.addPayment(providedPayment);</b>
-<i class="no-highlight">62</i>&nbsp;
-<b class="fc"><i class="no-highlight">63</i>&nbsp;        return new ResponseEntity&lt;&gt;(savedPayment, HttpStatus.CREATED);</b>
-<i class="no-highlight">64</i>&nbsp;    }
-<i class="no-highlight">65</i>&nbsp;
-<i class="no-highlight">66</i>&nbsp;
-<i class="no-highlight">67</i>&nbsp;    /**
-<i class="no-highlight">68</i>&nbsp;     * @param token The token string to find payment. See more in the service layer {@link PaymentService}
-<i class="no-highlight">69</i>&nbsp;     * @return Returns updated Payment with made modifications or {@link HttpStatus.NOT_FOUND} if service did not return data for given parameter
-<i class="no-highlight">70</i>&nbsp;     */
-<i class="no-highlight">71</i>&nbsp;    @PostMapping(&quot;/payment-approve&quot;)
-<i class="no-highlight">72</i>&nbsp;    private ResponseEntity&lt;Payment&gt; updatePayment(@RequestParam(required = true) String token) {
-<b class="nc"><i class="no-highlight">73</i>&nbsp;        var updatedPaymentOptional = service.updatePaymentByToken(token);</b>
-<i class="no-highlight">74</i>&nbsp;
-<b class="nc"><i class="no-highlight">75</i>&nbsp;        if (updatedPaymentOptional.isPresent()) return new ResponseEntity&lt;&gt;(updatedPaymentOptional.get(), HttpStatus.OK);</b>
-<b class="nc"><i class="no-highlight">76</i>&nbsp;        return ResponseEntity.notFound().build();</b>
-<i class="no-highlight">77</i>&nbsp;    }
-<i class="no-highlight">78</i>&nbsp;
-<i class="no-highlight">79</i>&nbsp;
-<i class="no-highlight">80</i>&nbsp;}
+<i class="no-highlight">52</i>&nbsp;    /**
+<i class="no-highlight">53</i>&nbsp;     * @param providedPayment JSON serialized Payment data that needs to be stored on backend
+<i class="no-highlight">54</i>&nbsp;     * @return See {@link PaymentService#addPayment(Payment)}
+<i class="no-highlight">55</i>&nbsp;     * &lt;br&gt;&lt;br&gt;
+<i class="no-highlight">56</i>&nbsp;     * Can throw {@link com.romansj.backend_hwk.configuration.exceptions.MyConstraintException} if incorrect input data is sent, with {@link HttpStatus.BAD_REQUEST}
+<i class="no-highlight">57</i>&nbsp;     */
+<i class="no-highlight">58</i>&nbsp;    @PostMapping(&quot;/payment&quot;)
+<i class="no-highlight">59</i>&nbsp;    private ResponseEntity&lt;Payment&gt; createPayment(@RequestBody Payment providedPayment) {
+<b class="fc"><i class="no-highlight">60</i>&nbsp;        var savedPayment = service.addPayment(providedPayment);</b>
+<b class="fc"><i class="no-highlight">61</i>&nbsp;        return new ResponseEntity&lt;&gt;(savedPayment, HttpStatus.CREATED);</b>
+<i class="no-highlight">62</i>&nbsp;    }
+<i class="no-highlight">63</i>&nbsp;
+<i class="no-highlight">64</i>&nbsp;
+<i class="no-highlight">65</i>&nbsp;    /**
+<i class="no-highlight">66</i>&nbsp;     * @param token The token string to find payment. See more in the service layer {@link PaymentService}
+<i class="no-highlight">67</i>&nbsp;     * @return Returns updated Payment with made modifications or {@link HttpStatus.NOT_FOUND} if service did not return data for given parameter
+<i class="no-highlight">68</i>&nbsp;     */
+<i class="no-highlight">69</i>&nbsp;    @PostMapping(&quot;/payment-approve&quot;)
+<i class="no-highlight">70</i>&nbsp;    private ResponseEntity&lt;Payment&gt; updatePayment(@RequestParam(required = true) String token) {
+<b class="nc"><i class="no-highlight">71</i>&nbsp;        var updatedPaymentOptional = service.updatePaymentByToken(token);</b>
+<i class="no-highlight">72</i>&nbsp;
+<b class="nc"><i class="no-highlight">73</i>&nbsp;        if (updatedPaymentOptional.isPresent()) return new ResponseEntity&lt;&gt;(updatedPaymentOptional.get(), HttpStatus.OK);</b>
+<b class="nc"><i class="no-highlight">74</i>&nbsp;        return ResponseEntity.notFound().build();</b>
+<i class="no-highlight">75</i>&nbsp;    }
+<i class="no-highlight">76</i>&nbsp;
+<i class="no-highlight">77</i>&nbsp;
+<i class="no-highlight">78</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -179,7 +177,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-21 01:44</div>
+    <div style="float:right;">generated on 2022-07-21 09:57</div>
 </div>
 </body>
 </html>

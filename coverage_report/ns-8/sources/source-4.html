@@ -79,34 +79,35 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">4</i>&nbsp;import com.romansj.backend_hwk.payments.entity.PaymentType;
 <i class="no-highlight">5</i>&nbsp;
 <i class="no-highlight">6</i>&nbsp;import java.time.LocalDateTime;
-<i class="no-highlight">7</i>&nbsp;import java.util.Currency;
-<i class="no-highlight">8</i>&nbsp;
-<i class="no-highlight">9</i>&nbsp;/**
-<i class="no-highlight">10</i>&nbsp; * Class which provides test/dummy data via test data builder pattern
-<i class="no-highlight">11</i>&nbsp; */
-<b class="nc"><i class="no-highlight">12</i>&nbsp;public class Payments {</b>
-<i class="no-highlight">13</i>&nbsp;    /**
-<i class="no-highlight">14</i>&nbsp;     * @return Returns {@link Payment} instance.
-<i class="no-highlight">15</i>&nbsp;     * &lt;br&gt;&lt;br&gt;
-<i class="no-highlight">16</i>&nbsp;     * Call &lt;code&gt;aPayment().toBuilder()&lt;/code&gt; to customize the default values, overriding what you need by calling {@code withX} methods
-<i class="no-highlight">17</i>&nbsp;     */
-<i class="no-highlight">18</i>&nbsp;    public static Payment aPayment() {
-<b class="fc"><i class="no-highlight">19</i>&nbsp;        return Payment.aPayment()</b>
-<b class="fc"><i class="no-highlight">20</i>&nbsp;                .withAmount(1.00)</b>
-<b class="fc"><i class="no-highlight">21</i>&nbsp;                .withPaymentType(PaymentType.LOCAL)</b>
-<b class="fc"><i class="no-highlight">22</i>&nbsp;                .withAccountOrigin(&quot;LV10PARX0012345678910&quot;)</b>
-<b class="fc"><i class="no-highlight">23</i>&nbsp;                .withPaymentDate(LocalDateTime.of(2022, 7, 15, 12, 15, 10))</b>
-<b class="fc"><i class="no-highlight">24</i>&nbsp;                .withAccountDestination(&quot;LV10PARX0012345678911&quot;)</b>
-<b class="fc"><i class="no-highlight">25</i>&nbsp;                .withNameDestination(&quot;J?nis Rom?ns&quot;)</b>
-<b class="fc"><i class="no-highlight">26</i>&nbsp;                .withSwift(&quot;LVPARX22&quot;)</b>
-<b class="fc"><i class="no-highlight">27</i>&nbsp;                .withAmount(1.00)</b>
-<b class="fc"><i class="no-highlight">28</i>&nbsp;                .withCurrency(Currency.getInstance(&quot;EUR&quot;))</b>
-<b class="fc"><i class="no-highlight">29</i>&nbsp;                .withReason(&quot;Test transfer&quot;)</b>
-<b class="fc"><i class="no-highlight">30</i>&nbsp;                .build();</b>
-<i class="no-highlight">31</i>&nbsp;    }
-<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;import java.time.ZoneId;
+<i class="no-highlight">8</i>&nbsp;import java.util.Currency;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;/**
+<i class="no-highlight">11</i>&nbsp; * Class which provides test/dummy data via test data builder pattern
+<i class="no-highlight">12</i>&nbsp; */
+<b class="nc"><i class="no-highlight">13</i>&nbsp;public class Payments {</b>
+<i class="no-highlight">14</i>&nbsp;    /**
+<i class="no-highlight">15</i>&nbsp;     * @return Returns {@link Payment} instance.
+<i class="no-highlight">16</i>&nbsp;     * &lt;br&gt;&lt;br&gt;
+<i class="no-highlight">17</i>&nbsp;     * Call &lt;code&gt;aPayment().toBuilder()&lt;/code&gt; to customize the default values, overriding what you need by calling {@code withX} methods
+<i class="no-highlight">18</i>&nbsp;     */
+<i class="no-highlight">19</i>&nbsp;    public static Payment aPayment() {
+<b class="fc"><i class="no-highlight">20</i>&nbsp;        return Payment.aPayment()</b>
+<b class="fc"><i class="no-highlight">21</i>&nbsp;                .withAmount(1.00)</b>
+<b class="fc"><i class="no-highlight">22</i>&nbsp;                .withPaymentType(PaymentType.LOCAL)</b>
+<b class="fc"><i class="no-highlight">23</i>&nbsp;                .withAccountOrigin(&quot;LV10PARX0012345678910&quot;)</b>
+<b class="fc"><i class="no-highlight">24</i>&nbsp;                .withPaymentDate(LocalDateTime.of(2022, 7, 15, 12, 15, 10).atZone(ZoneId.systemDefault()))</b>
+<b class="fc"><i class="no-highlight">25</i>&nbsp;                .withAccountDestination(&quot;LV10PARX0012345678911&quot;)</b>
+<b class="fc"><i class="no-highlight">26</i>&nbsp;                .withNameDestination(&quot;J?nis Rom?ns&quot;)</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;                .withSwift(&quot;LVPARX22&quot;)</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;                .withAmount(1.00)</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;                .withCurrency(Currency.getInstance(&quot;EUR&quot;))</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;                .withReason(&quot;Test transfer&quot;)</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;                .build();</b>
+<i class="no-highlight">32</i>&nbsp;    }
 <i class="no-highlight">33</i>&nbsp;
-<i class="no-highlight">34</i>&nbsp;}
+<i class="no-highlight">34</i>&nbsp;
+<i class="no-highlight">35</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -133,7 +134,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-21 01:44</div>
+    <div style="float:right;">generated on 2022-07-21 09:57</div>
 </div>
 </body>
 </html>

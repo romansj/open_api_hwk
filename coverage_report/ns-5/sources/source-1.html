@@ -61,7 +61,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (8/8)
+    (7/7)
   </span>
 </td>
 </tr>
@@ -102,25 +102,24 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">27</i>&nbsp;     */
 <b class="fc"><i class="no-highlight">28</i>&nbsp;    public NotificationService() {</b>
 <b class="fc"><i class="no-highlight">29</i>&nbsp;        PaymentObservable.getInstance().getObservable().subscribe(paymentData -&gt; {</b>
-<b class="fc"><i class="no-highlight">30</i>&nbsp;            System.out.println(&quot;payment made, observable called&quot;);</b>
-<b class="fc"><i class="no-highlight">31</i>&nbsp;            sendEmail(paymentData);</b>
-<i class="no-highlight">32</i>&nbsp;
-<b class="fc"><i class="no-highlight">33</i>&nbsp;        }, Throwable::printStackTrace, () -&gt; System.out.println(&quot;stopped listening to successful payments&quot;));</b>
-<i class="no-highlight">34</i>&nbsp;
-<i class="no-highlight">35</i>&nbsp;    }
+<b class="fc"><i class="no-highlight">30</i>&nbsp;            sendEmail(paymentData);</b>
+<i class="no-highlight">31</i>&nbsp;
+<b class="fc"><i class="no-highlight">32</i>&nbsp;        }, Throwable::printStackTrace, () -&gt; System.out.println(&quot;stopped listening to successful payments&quot;));</b>
+<i class="no-highlight">33</i>&nbsp;
+<i class="no-highlight">34</i>&nbsp;    }
+<i class="no-highlight">35</i>&nbsp;
 <i class="no-highlight">36</i>&nbsp;
-<i class="no-highlight">37</i>&nbsp;
-<i class="no-highlight">38</i>&nbsp;    private void sendEmail(PaymentData paymentData) throws MessagingException {
-<b class="fc"><i class="no-highlight">39</i>&nbsp;        var email = PaymentEmailConverter.getEmailFromPaymentData(emailConfig.getEmail(), paymentData);</b>
-<b class="fc"><i class="no-highlight">40</i>&nbsp;        sendEmail(email);</b>
-<i class="no-highlight">41</i>&nbsp;    }
-<i class="no-highlight">42</i>&nbsp;
-<i class="no-highlight">43</i>&nbsp;    private void sendEmail(Email email) throws MessagingException {
-<b class="fc"><i class="no-highlight">44</i>&nbsp;        emailService.sendHtmlEmail(email);</b>
-<i class="no-highlight">45</i>&nbsp;    }
+<i class="no-highlight">37</i>&nbsp;    private void sendEmail(PaymentData paymentData) throws MessagingException {
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        var email = PaymentEmailConverter.getEmailFromPaymentData(emailConfig.getEmail(), paymentData);</b>
+<b class="fc"><i class="no-highlight">39</i>&nbsp;        sendEmail(email);</b>
+<i class="no-highlight">40</i>&nbsp;    }
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;    private void sendEmail(Email email) throws MessagingException {
+<b class="fc"><i class="no-highlight">43</i>&nbsp;        emailService.sendHtmlEmail(email);</b>
+<i class="no-highlight">44</i>&nbsp;    }
+<i class="no-highlight">45</i>&nbsp;
 <i class="no-highlight">46</i>&nbsp;
-<i class="no-highlight">47</i>&nbsp;
-<i class="no-highlight">48</i>&nbsp;}
+<i class="no-highlight">47</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -147,7 +146,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-21 01:44</div>
+    <div style="float:right;">generated on 2022-07-21 09:57</div>
 </div>
 </body>
 </html>

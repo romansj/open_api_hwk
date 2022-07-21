@@ -61,7 +61,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/13)
+    (0/15)
   </span>
 </td>
 </tr>
@@ -80,31 +80,39 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">5</i>&nbsp;
 <i class="no-highlight">6</i>&nbsp;// Created so printing settings would be defined in one place
 <b class="nc"><i class="no-highlight">7</i>&nbsp;public class HttpServletUtils {</b>
-<i class="no-highlight">8</i>&nbsp;    public static void printHeaders(HttpServletRequest request) {
-<b class="nc"><i class="no-highlight">9</i>&nbsp;        System.out.println(&quot;\nrequest&quot;);</b>
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;    private static String NEW_LINE;
 <i class="no-highlight">10</i>&nbsp;
-<b class="nc"><i class="no-highlight">11</i>&nbsp;        System.out.println(&quot;method: &quot; + request.getMethod());</b>
-<b class="nc"><i class="no-highlight">12</i>&nbsp;        System.out.println(&quot;url: &quot; + request.getRequestURL());</b>
-<i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;
-<b class="nc"><i class="no-highlight">15</i>&nbsp;        var headerNames = request.getHeaderNames().asIterator();</b>
-<b class="nc"><i class="no-highlight">16</i>&nbsp;        headerNames.forEachRemaining(name -&gt; {</b>
-<b class="nc"><i class="no-highlight">17</i>&nbsp;            var headers = request.getHeaders(name).asIterator();</b>
-<b class="nc"><i class="no-highlight">18</i>&nbsp;            headers.forEachRemaining(header -&gt; System.out.println(name + &quot;: &quot; + header));</b>
-<i class="no-highlight">19</i>&nbsp;        });
-<i class="no-highlight">20</i>&nbsp;    }
-<i class="no-highlight">21</i>&nbsp;
-<i class="no-highlight">22</i>&nbsp;    public static void printHeaders(HttpServletResponse response) {
-<b class="nc"><i class="no-highlight">23</i>&nbsp;        System.out.println(&quot;\nresponse&quot;);</b>
+<i class="no-highlight">11</i>&nbsp;    public static String getHeaderData(HttpServletRequest request) {
+<b class="nc"><i class="no-highlight">12</i>&nbsp;        var builder = new StringBuilder(&quot;request\n&quot;);</b>
+<b class="nc"><i class="no-highlight">13</i>&nbsp;        builder.append(&quot;method: &quot;).append(request.getMethod()).append(NEW_LINE);</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;        builder.append(&quot;url: &quot;).append(request.getRequestURL()).append(NEW_LINE);</b>
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;
+<b class="nc"><i class="no-highlight">19</i>&nbsp;        var headerNames = request.getHeaderNames().asIterator();</b>
+<b class="nc"><i class="no-highlight">20</i>&nbsp;        headerNames.forEachRemaining(name -&gt; {</b>
+<b class="nc"><i class="no-highlight">21</i>&nbsp;            var headers = request.getHeaders(name).asIterator();</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;            headers.forEachRemaining(header -&gt; builder.append(name).append(&quot;: &quot;).append(header).append(NEW_LINE));</b>
+<i class="no-highlight">23</i>&nbsp;        });
 <i class="no-highlight">24</i>&nbsp;
-<b class="nc"><i class="no-highlight">25</i>&nbsp;        System.out.println(&quot;status: &quot; + response.getStatus());</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;        response.getHeaderNames().forEach(name -&gt; {</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;            var headers = response.getHeaders(name);</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;            headers.forEach(header -&gt; System.out.println(name + &quot;: &quot; + header));</b>
-<i class="no-highlight">29</i>&nbsp;        });
-<i class="no-highlight">30</i>&nbsp;    }
-<i class="no-highlight">31</i>&nbsp;}
-<i class="no-highlight">32</i>&nbsp;
+<b class="nc"><i class="no-highlight">25</i>&nbsp;        return builder.toString();</b>
+<i class="no-highlight">26</i>&nbsp;    }
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    public static String getHeaderData(HttpServletResponse response) {
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        var builder = new StringBuilder(&quot;response\n&quot;);</b>
+<i class="no-highlight">30</i>&nbsp;
+<b class="nc"><i class="no-highlight">31</i>&nbsp;        builder.append(&quot;status: &quot;).append(response.getStatus()).append(NEW_LINE);</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;        response.getHeaderNames().forEach(name -&gt; {</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;            var headers = response.getHeaders(name);</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;            headers.forEach(header -&gt; builder.append(name).append(&quot;: &quot;).append(header).append(NEW_LINE));</b>
+<i class="no-highlight">35</i>&nbsp;        });
+<i class="no-highlight">36</i>&nbsp;
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        return builder.toString();</b>
+<i class="no-highlight">38</i>&nbsp;    }
+<i class="no-highlight">39</i>&nbsp;}
+<i class="no-highlight">40</i>&nbsp;
 </div>
 </pre>
 </div>
@@ -131,7 +139,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-21 01:44</div>
+    <div style="float:right;">generated on 2022-07-21 09:57</div>
 </div>
 </body>
 </html>
